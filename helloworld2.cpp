@@ -169,27 +169,14 @@ void SomeFunction(int aParam);
 double myGlobalDouble = 3.14159;
 /*******/
 void PrintFormatted(ofstream& outputFile, int maxLoop);
-
 /***/
+void InfileExample();
 
 // This is the main function. It is always executed first.
 
 int main() {
-int maxLoop;
-ofstream outfile; // ofstream is a built-in class in C++. You cannot change the name of this. 
-
-cout << "Writing to file" << endl;
-outfile.open("output.txt");
-
-outfile << fixed << showpoint;
-cout << " Select a hard-coded value" << endl;
-cin >> maxLoop; 
-
-PrintFormatted(outfile, maxLoop);
-
-outfile.close(); // It's a good practice to always close your session when you're done with it
-cout << "Done." << endl;
-return 0;
+InfileExample();
+return 0; 
 }
 
 void printHello(){
@@ -229,9 +216,29 @@ void SomeFunction(int aParam) {
 }
 
 void PrintFormatted(ofstream& outputFile, int maxLoop) {
-for (int i=1; i < maxLoop; i++)
+for (int i=1; i <= maxLoop; i++)
 {
     outputFile << setw(12) << setprecision(2) << (i*5.75) << setw(12) << setprecision(3) << (i*3.14159) << endl; // setw seems to be adding a horizontal space?  
     cout << setw(12) << setprecision(2) << (i*5.75) << setw(12) << setprecision(3) << (i*3.14159) << endl; // we expect to see the same thing being displayed in the out file
 }
 }
+
+void InfileExample(){ // Reading from a file and using its values
+
+ifstream infile;
+
+int inputNum;
+int sum;
+
+infile.open("input.txt");
+
+while (!infile.eof()){ // while we are not in the end of the file
+
+infile >> inputNum;
+cout << "Show input from file: " << inputNum << endl;
+sum += inputNum;
+}
+cout << "Sum of the numbers is " << sum << endl;
+infile.close();
+}
+
