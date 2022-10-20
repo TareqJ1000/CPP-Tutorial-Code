@@ -185,10 +185,7 @@ outfile << fixed << showpoint;
 cout << " Select a hard-coded value" << endl;
 cin >> maxLoop; 
 
-for (int i=1; i <maxLoop; i++){
-  outfile << setw(12) << setprecision(2) << (i*5.75) << setw(12) << setprecision(3) << (i*3.14159) << endl; // setw seems to be adding a horizontal space?  
-  cout << setw(12) << setprecision(2) << (i*5.75) << setw(12) << setprecision(3) << (i*3.14159) << endl; // we expect to see the same thing being displayed in the out file
-}
+PrintFormatted(outfile, maxLoop);
 
 outfile.close(); // It's a good practice to always close your session when you're done with it
 cout << "Done." << endl;
@@ -231,4 +228,10 @@ void SomeFunction(int aParam) {
     cout << "My global double is: " << myGlobalDouble << endl;
 }
 
-void PrintFormatted(ofstream& outputFile, int maxLoop)
+void PrintFormatted(ofstream& outputFile, int maxLoop) {
+for (int i=1; i < maxLoop; i++)
+{
+    outputFile << setw(12) << setprecision(2) << (i*5.75) << setw(12) << setprecision(3) << (i*3.14159) << endl; // setw seems to be adding a horizontal space?  
+    cout << setw(12) << setprecision(2) << (i*5.75) << setw(12) << setprecision(3) << (i*3.14159) << endl; // we expect to see the same thing being displayed in the out file
+}
+}
