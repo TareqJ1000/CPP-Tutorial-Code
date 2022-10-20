@@ -9,6 +9,44 @@ using namespace std;
 
 enum car_purpose {buisness, leisure, delivery, hobby}; // so ... it assigns a number to each ... variable in the brackets? We can assign up to 1023 values to different purposes (though it is compiler dependent)
 
+
+
+class House {
+
+  public:  // accessible outside the class
+    void setNumStories (int numStories)
+    {
+       this -> numStories = numStories;
+    }
+    void setNumWindow (int numWindow)
+    {
+       this -> numWindow = numWindow;
+    }
+    void setColour(string colour)
+    {
+       this -> colour = colour;
+    }
+    int getNumStories () const // const treats the var below as READ ONLY
+    {
+       return this -> numStories;
+    }
+    int getNumWindow() const
+    {
+       return this -> numWindow;
+    }
+    string getColour () const
+    {
+       return this -> colour;
+    }
+
+private: // not directly accessible
+    int numStories; 
+    int numWindow;
+    string colour;
+
+
+}; // semicolon after defining a class! 
+
 struct car {
 
    string model;
@@ -23,18 +61,14 @@ void Display (car myCar);
 
 int main() {
 
-car my_car; 
+House myHouse;
+House coryHouse; 
 
-my_car.age = 5; 
-my_car.model = "SomeModel";
-my_car.purpose = leisure; // we can also change the purpose of the char by typing in its corresponding integer
+myHouse.setNumStories(2);
+myHouse.setNumWindow(6); 
+myHouse.setColour("red");
 
-Display(my_car);
-ChangePurpose(my_car, 4);
-Display(my_car);
-
-
-cout << my_car.model << "is a type " << (int) my_car.purpose << " car." << endl;
+cout << "This is my house, bro! It is a " << myHouse.getColour() <<" house. It has " << myHouse.getNumWindow() << " windows and " << myHouse.getNumStories() << " stories." << endl;
 
 return (0);
 }
